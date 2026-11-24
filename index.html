@@ -79,7 +79,7 @@ a{color:var(--accent);text-decoration:none}
 /* scene illustration */
 .scene{position:relative;aspect-ratio:1/1.02;border-radius:26px;overflow:hidden;box-shadow:var(--shadow-lg);
   border:1px solid var(--line);background:linear-gradient(180deg,var(--sky1),var(--sky2))}
-.scene svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene svg.bg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sun{transform-origin:center;animation:sunpulse 6s ease-in-out infinite}
 .bird{animation:fly 16s linear infinite}
 .bird.b2{animation-duration:22s;animation-delay:-6s}
@@ -236,7 +236,7 @@ footer b{color:var(--ink)}
     <p class="by">Автор: <b>Ыбырай Алтынсарин</b> (1841–1889) · «Қазақ хрестоматиясы», 1879</p>
   </div>
   <div class="scene" id="scene">
-    <svg viewBox="0 0 400 408" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <svg class="bg" viewBox="0 0 400 408" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/>
@@ -364,7 +364,10 @@ const FREQ=new Map(); for(const tk of TOKENS)FREQ.set(tk.l,(FREQ.get(tk.l)||0)+1
 const TYPES=FREQ.size; let hapax=0; for(const v of FREQ.values())if(v===1)hapax++;
 const FLIST=[...FREQ.entries()].map(([w,c])=>({w,c,ipm:Math.round(c/N*1e6),pct:+(c/N*100).toFixed(2)}))
   .sort((a,b)=>b.c-a.c||a.w.localeCompare(b.w,'kk')); FLIST.forEach((o,i)=>o.rank=i+1);
-const SENTS=RAW.split(/(?<=[.!?…])\s+/).filter(s=>s.trim());
+function splitSents(t){const out=[];let buf='';for(let i=0;i<t.length;i++){const ch=t[i];buf+=ch;
+  if('.!?…'.indexOf(ch)>-1){let j=i+1;while(j<t.length&&/\s/.test(t[j]))j++;const s=buf.trim();if(s)out.push(s);buf='';i=j-1;}}
+  const s=buf.trim();if(s)out.push(s);return out;}
+const SENTS=splitSents(RAW);
 const avgSent=N/SENTS.length; let longest=0; for(const s of SENTS){const k=(s.match(WRE)||[]).length;if(k>longest)longest=k;}
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const fmt=n=>n.toLocaleString('kk');
