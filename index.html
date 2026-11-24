@@ -4,179 +4,288 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>«Бай мен жарлы баласы» корпусы — Ы. Алтынсарин</title>
-<meta name="description" content="Ыбырай Алтынсариннің «Бай мен жарлы баласы» әңгімесінің лингвистикалық корпусы: конкорданс, жиілік сөздігі, статистика, толық мәтін.">
+<meta name="description" content="Ыбырай Алтынсариннің «Бай мен жарлы баласы» әңгімесінің цифрлық лингвистикалық корпусы: конкорданс, жиілік сөздігі, статистика, толық мәтін.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Serif+Kazakh:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f1e7; --surface:#fffdf8; --surface2:#f1e9d9; --ink:#241f1a; --muted:#6b5f4f;
-  --line:#e4d9c3; --accent:#7c2d3a; --accent2:#b07d2c; --accent-soft:#f3e3d2;
-  --hi:#ffe08a; --good:#2f6b3f; --shadow:0 1px 2px rgba(60,40,10,.06),0 8px 28px rgba(60,40,10,.08);
-  --r:14px;
+  --bg:#f5efe3; --bg2:#efe6d4; --surface:#fffdf8; --surface2:#f3ebda; --ink:#241e17; --muted:#6f6350;
+  --line:#e3d7bf; --accent:#9c3326; --accent-2:#c6902f; --green:#2f5d4b; --accent-soft:#f6e6d6;
+  --hi:#ffd980; --shadow:0 1px 2px rgba(80,50,10,.05),0 10px 30px rgba(80,50,10,.09);
+  --shadow-lg:0 20px 60px rgba(80,50,10,.16); --r:16px;
+  --sky1:#eaddc2; --sky2:#f3e9d6; --hill1:#3a6b56; --hill2:#4f805f; --hill3:#9cae6f;
+  --lake:#8fb3b0; --sun:#e8b43e;
 }
 :root[data-theme="dark"]{
-  --bg:#17130f; --surface:#211b15; --surface2:#2a2219; --ink:#f0e8db; --muted:#b4a68f;
-  --line:#3a2f22; --accent:#e08b97; --accent2:#e0b65f; --accent-soft:#2c2118;
-  --hi:#6b5518; --good:#7bc98c; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.4);
+  --bg:#15110c; --bg2:#1c160f; --surface:#211a12; --surface2:#2a2217; --ink:#f1e8d8; --muted:#b2a488;
+  --line:#3a2e1d; --accent:#e79782; --accent-2:#e2bb63; --green:#7fc0a2; --accent-soft:#2c2014;
+  --hi:#705616; --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.5);
+  --shadow-lg:0 24px 70px rgba(0,0,0,.6);
+  --sky1:#241a10; --sky2:#1a140d; --hill1:#1f4336; --hill2:#2a5243; --hill3:#3f5a3a;
+  --lake:#2a4a48; --sun:#e2a93b;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#17130f; --surface:#211b15; --surface2:#2a2219; --ink:#f0e8db; --muted:#b4a68f;
-    --line:#3a2f22; --accent:#e08b97; --accent2:#e0b65f; --accent-soft:#2c2118;
-    --hi:#6b5518; --good:#7bc98c; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.4);
-  }
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#15110c; --bg2:#1c160f; --surface:#211a12; --surface2:#2a2217; --ink:#f1e8d8; --muted:#b2a488;
+  --line:#3a2e1d; --accent:#e79782; --accent-2:#e2bb63; --green:#7fc0a2; --accent-soft:#2c2014;
+  --hi:#705616; --shadow:0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.5);
+  --shadow-lg:0 24px 70px rgba(0,0,0,.6);
+  --sky1:#241a10; --sky2:#1a140d; --hill1:#1f4336; --hill2:#2a5243; --hill3:#3f5a3a;
+  --lake:#2a4a48; --sun:#e2a93b;
+}}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;
-  -webkit-font-smoothing:antialiased}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.15;letter-spacing:-.01em}
+body{margin:0;background:var(--bg);color:var(--ink);overflow-x:hidden;
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.62;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb,var(--accent-2) 16%,transparent), transparent 60%),
+  radial-gradient(900px 500px at -5% 20%, color-mix(in srgb,var(--green) 13%,transparent), transparent 60%),
+  var(--bg);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.1;letter-spacing:-.015em;margin:0}
 a{color:var(--accent);text-decoration:none}
-/* top nav */
-.nav{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 86%,transparent);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:14px;height:58px}
-.brand{font-family:'Playfair Display',serif;font-weight:800;font-size:18px;white-space:nowrap}
+::selection{background:var(--accent-soft)}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);
+  backdrop-filter:blur(12px) saturate(1.3);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:16px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:800;font-size:17px;white-space:nowrap}
+.brand .bk{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--accent),#7d2419);box-shadow:var(--shadow)}
 .brand b{color:var(--accent)}
-.navlinks{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
-.navlinks a{padding:7px 11px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px}
-.navlinks a:hover{background:var(--surface2);color:var(--ink)}
-.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);
-  width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;display:grid;place-items:center}
-/* hero */
-.hero{padding:54px 0 30px;position:relative;overflow:hidden}
-.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--accent2);
-  font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-.hero h1{font-size:clamp(34px,6vw,60px);margin:14px 0 8px;font-weight:800}
-.hero .sub{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:640px}
-.hero .by{margin-top:10px;color:var(--muted);font-size:15px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0 6px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-  padding:16px 14px;box-shadow:var(--shadow)}
-.stat .n{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--accent)}
-.stat .l{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
-/* sections */
-section{padding:38px 0;border-top:1px solid var(--line)}
-.eyebrow{font-weight:700;color:var(--accent2);font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-section h2{font-size:clamp(26px,4vw,38px);margin:8px 0 6px}
-.lead{color:var(--muted);max-width:720px;margin-bottom:22px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-  padding:18px;box-shadow:var(--shadow)}
+.navlinks{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+.navlinks a{position:relative;padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px;transition:.2s}
+.navlinks a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{transform:scaleX(1)}
+.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:40px;height:40px;
+  border-radius:50%;cursor:pointer;font-size:16px;display:grid;place-items:center;transition:.2s}
+.iconbtn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+/* HERO */
+.hero{position:relative;padding:40px 0 10px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--accent-2);
+  font-size:12.5px;letter-spacing:.16em;text-transform:uppercase}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);animation:pulse 2.4s ease-in-out infinite}
+.hero h1{font-size:clamp(40px,6.6vw,76px);margin:16px 0 14px;font-weight:900}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .sub{font-size:clamp(16px,2.1vw,20px);color:var(--muted);max-width:520px}
+.hero .by{margin-top:14px;color:var(--muted);font-size:14.5px}
+.hero .by b{color:var(--ink)}
+.hcta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+
+/* scene illustration */
+.scene{position:relative;aspect-ratio:1/1.02;border-radius:26px;overflow:hidden;box-shadow:var(--shadow-lg);
+  border:1px solid var(--line);background:linear-gradient(180deg,var(--sky1),var(--sky2))}
+.scene svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sun{transform-origin:center;animation:sunpulse 6s ease-in-out infinite}
+.bird{animation:fly 16s linear infinite}
+.bird.b2{animation-duration:22s;animation-delay:-6s}
+.bird.b3{animation-duration:19s;animation-delay:-11s}
+.reeds{transform-origin:bottom center;animation:sway 4.5s ease-in-out infinite}
+.cloud{animation:cloud 30s linear infinite}
+.cloud.c2{animation-duration:44s;animation-delay:-10s}
+.ornament{position:absolute;top:14px;right:16px;width:46px;height:46px;color:var(--accent-2);opacity:.85;animation:spin 26s linear infinite}
+/* quote card */
+.qcard{position:absolute;left:18px;bottom:18px;right:22%;background:color-mix(in srgb,var(--surface) 92%,transparent);
+  backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);min-height:118px}
+.qcard .lab{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);font-weight:700}
+.qcard .qt{font-family:'Playfair Display',serif;font-size:clamp(16px,2.2vw,21px);line-height:1.3;margin-top:8px;color:var(--ink)}
+.qcard .qd{margin-top:8px;font-size:12.5px;color:var(--muted)}
+.qdots{display:flex;gap:6px;margin-top:10px}
+.qdots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.3s;cursor:pointer}
+.qdots i.on{background:var(--accent);width:18px;border-radius:4px}
+
+/* hero stats */
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:34px 0 6px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 16px;box-shadow:var(--shadow);text-align:center}
+.stat .n{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,34px);font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat .l{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+
+/* ticker */
+.ticker{margin-top:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:13px 0;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ticker .run{display:inline-flex;gap:30px;white-space:nowrap;animation:ticker 34s linear infinite;will-change:transform}
+.ticker:hover .run{animation-play-state:paused}
+.ticker .w{font-family:'Playfair Display',serif;font-size:19px;color:var(--muted);cursor:pointer;transition:.2s}
+.ticker .w:hover{color:var(--accent)}
+.ticker .w b{color:var(--accent-2);font-size:13px;font-family:'Inter';vertical-align:super;margin-left:3px}
+
+/* SECTIONS */
+section{padding:52px 0;position:relative}
+.eyebrow{font-weight:800;color:var(--accent-2);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
+section h2{font-size:clamp(28px,4.4vw,44px);margin:10px 0 8px;font-weight:800}
+.lead{color:var(--muted);max-width:740px;margin-bottom:24px;font-size:15.5px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
 /* search */
-.searchbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.searchbar input[type=text]{flex:1;min-width:220px;padding:13px 16px;border:1.5px solid var(--line);
-  border-radius:999px;background:var(--surface2);color:var(--ink);font-size:16px;font-family:inherit}
-.searchbar input:focus{outline:none;border-color:var(--accent)}
-.btn{padding:13px 22px;border-radius:999px;border:none;background:var(--accent);color:#fff;
-  font-weight:700;font-size:15px;cursor:pointer;font-family:inherit}
-.btn:hover{filter:brightness(1.08)}
+.searchbar{display:flex;gap:10px;flex-wrap:wrap}
+.searchbar input{flex:1;min-width:220px;padding:15px 18px;border:1.5px solid var(--line);border-radius:999px;
+  background:var(--surface2);color:var(--ink);font-size:16px;font-family:inherit;transition:.2s}
+.searchbar input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.btn{padding:15px 26px;border-radius:999px;border:none;background:var(--accent);color:#fff;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;transition:.2s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
-.modes{display:flex;gap:6px;margin:12px 0}
-.modes button{padding:8px 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;
-  color:var(--muted);font-weight:600;cursor:pointer;font-size:13.5px;font-family:inherit}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.modes{display:flex;gap:7px;margin:14px 0}
+.modes button{padding:9px 15px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--muted);font-weight:600;cursor:pointer;font-size:13.5px;font-family:inherit;transition:.2s}
 .modes button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.chip{padding:5px 12px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);
-  cursor:pointer;font-size:13px;color:var(--muted)}
-.chip:hover{color:var(--accent);border-color:var(--accent)}
-.meta{color:var(--muted);font-size:14px;margin:14px 0 8px}
-/* KWIC */
-.kwic{font-family:'Noto Serif Kazakh','Playfair Display',Georgia,serif;font-size:15.5px}
-.krow{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:baseline;
-  padding:7px 6px;border-bottom:1px dashed var(--line)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.chip{padding:6px 13px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);cursor:pointer;font-size:13px;color:var(--muted);transition:.2s}
+.chip:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-1px)}
+.meta{color:var(--muted);font-size:14px;margin:16px 0 8px}
+.kwic{font-family:'Noto Serif',Georgia,serif;font-size:15.5px}
+.krow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:baseline;padding:8px 6px;border-bottom:1px dashed var(--line);animation:fadein .4s both}
 .kleft{text-align:right;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl}
-.kkey{color:var(--accent);font-weight:700;white-space:nowrap;padding:0 4px;background:var(--accent-soft);border-radius:6px}
+.kkey{color:var(--accent);font-weight:700;white-space:nowrap;padding:1px 6px;background:var(--accent-soft);border-radius:7px}
 .kright{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media(max-width:640px){.krow{grid-template-columns:1fr;gap:2px}.kleft,.kright{direction:ltr;text-align:left;white-space:normal}}
-/* table */
+
 .tablewrap{overflow:auto;border:1px solid var(--line);border-radius:var(--r)}
 table{border-collapse:collapse;width:100%;font-size:14.5px}
-th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-th{background:var(--surface2);font-weight:700;position:sticky;top:0;cursor:pointer;user-select:none}
+th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--surface2);font-weight:700;position:sticky;top:0;cursor:pointer;user-select:none;transition:.2s}
 th:hover{color:var(--accent)}
-tbody tr:hover{background:var(--surface2)}
-td.word{font-weight:600;color:var(--ink);cursor:pointer}
+tbody tr{transition:.15s}tbody tr:hover{background:var(--surface2)}
+td.word{font-weight:600;color:var(--ink);cursor:pointer}td.word:hover{color:var(--accent)}
 td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
-.bar{height:7px;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-/* stats grid */
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.sbox{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
-.sbox .n{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:var(--accent)}
-.sbox .l{font-size:13px;color:var(--muted)}
-.chart{margin-top:18px;display:grid;gap:6px}
-.crow{display:grid;grid-template-columns:120px 1fr 56px;gap:10px;align-items:center;font-size:13.5px}
+.bar{height:8px;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px}
+.sbox{background:linear-gradient(160deg,var(--surface),var(--surface2));border:1px solid var(--line);border-radius:14px;padding:16px;transition:.25s}
+.sbox:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.sbox .n{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.sbox .l{font-size:13px;color:var(--muted);margin-top:2px}
+.chart{margin-top:22px;display:grid;gap:7px}
+.crow{display:grid;grid-template-columns:130px 1fr 52px;gap:12px;align-items:center;font-size:13.5px}
 .crow .w{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .crow .v{color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
-.cbar{height:16px;border-radius:5px;background:linear-gradient(90deg,var(--accent),var(--accent2));min-width:3px}
-/* full text */
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.toolbar input{flex:1;min-width:200px;padding:11px 15px;border:1.5px solid var(--line);border-radius:999px;
-  background:var(--surface2);color:var(--ink);font-size:15px;font-family:inherit}
-.text{font-family:'Noto Serif Kazakh','Playfair Display',Georgia,serif;font-size:18px;line-height:1.95}
-.sent{display:block;padding:3px 0;border-bottom:1px solid transparent}
-.sent .sn{display:inline-block;min-width:34px;color:var(--accent2);font-size:12px;font-weight:700;
-  font-family:'Inter',sans-serif;vertical-align:top;user-select:none}
-.tok{cursor:pointer;border-radius:4px}
+.cbar{height:18px;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-2));width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1);min-width:3px}
+.notice{background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:10px;padding:12px 14px;font-size:13.5px;color:var(--muted);margin-top:16px}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.toolbar input{flex:1;min-width:200px;padding:12px 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface2);color:var(--ink);font-size:15px;font-family:inherit}
+.toolbar input:focus{outline:none;border-color:var(--accent)}
+.text{font-family:'Noto Serif',Georgia,serif;font-size:18px;line-height:2.0;max-height:560px;overflow:auto;padding-right:8px}
+.sent{display:block;padding:3px 0}
+.sent .sn{display:inline-block;min-width:34px;color:var(--accent-2);font-size:12px;font-weight:700;font-family:'Inter';vertical-align:top;user-select:none}
+.tok{cursor:pointer;border-radius:4px;transition:background .15s}
 .tok:hover{background:var(--accent-soft)}
-mark{background:var(--hi);color:inherit;border-radius:4px;padding:0 2px}
+mark{background:var(--hi);color:#241e17;border-radius:4px;padding:0 2px}
+
+/* about cards */
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.acard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;transition:.25s;position:relative;overflow:hidden}
+.acard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+.acard .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-size:20px;margin-bottom:10px}
+.acard h3{font-size:19px;margin-bottom:6px}
+.acard p{color:var(--muted);font-size:14px;margin:0}
+
 /* modal */
-.modal{position:fixed;inset:0;background:rgba(20,12,4,.5);display:none;place-items:center;z-index:80;padding:16px}
-.modal.on{display:grid}
-.sheet{background:var(--surface);border:1px solid var(--line);border-radius:18px;max-width:560px;width:100%;
-  max-height:84vh;overflow:auto;box-shadow:var(--shadow);padding:22px}
-.sheet h3{font-size:28px;margin:0 0 4px;color:var(--accent)}
-.sheet .close{float:right;cursor:pointer;color:var(--muted);font-size:22px;line-height:1}
-.wcstats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 16px}
-.wcstats .b{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
-.wcstats .b b{display:block;font-family:'Playfair Display',serif;font-size:20px;color:var(--accent)}
+.modal{position:fixed;inset:0;background:rgba(20,12,4,.55);backdrop-filter:blur(3px);display:none;place-items:center;z-index:90;padding:16px}
+.modal.on{display:grid;animation:fadein .2s}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:20px;max-width:580px;width:100%;max-height:84vh;overflow:auto;box-shadow:var(--shadow-lg);padding:24px;animation:pop .28s cubic-bezier(.2,.8,.2,1)}
+.sheet h3{font-size:30px;margin:0 0 4px;color:var(--accent)}
+.sheet .close{float:right;cursor:pointer;color:var(--muted);font-size:24px;line-height:1}
+.wcstats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 18px}
+.wcstats .b{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.wcstats .b b{display:block;font-family:'Playfair Display',serif;font-size:22px;color:var(--accent)}
 .wcstats .b span{font-size:12px;color:var(--muted)}
-/* footer */
-footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:14px}
+
+footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--muted);font-size:14px;margin-top:20px}
 footer b{color:var(--ink)}
-.notice{background:var(--surface2);border:1px solid var(--line);border-left:4px solid var(--accent2);
-  border-radius:10px;padding:12px 14px;font-size:13.5px;color:var(--muted);margin-top:14px}
 .hidden{display:none}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@keyframes sunpulse{0%,100%{opacity:.9;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes fly{0%{transform:translate(-60px,0)}100%{transform:translate(620px,-30px)}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes cloud{0%{transform:translateX(-80px)}100%{transform:translateX(560px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes ticker{to{transform:translateX(-50%)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.scene{max-width:440px;margin:4px auto 0;order:-1}.hstats{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal{opacity:1;transform:none;transition:none}.bar,.cbar{transition:none}}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="wrap">
-  <div class="brand">Бай мен жарлы баласы · <b>корпус</b></div>
+  <div class="brand"><span class="bk">📖</span> Бай мен жарлы баласы · <b>корпус</b></div>
   <div class="navlinks">
-    <a href="#search">Іздеу</a>
-    <a href="#freq">Жиілік</a>
-    <a href="#stats">Статистика</a>
-    <a href="#text">Мәтін</a>
-    <a href="#about">Дерек</a>
+    <a href="#search">Іздеу</a><a href="#freq">Жиілік</a><a href="#stats">Статистика</a><a href="#text">Мәтін</a><a href="#about">Дерек</a>
   </div>
   <button class="iconbtn" id="theme" title="Тема" aria-label="Тема">◐</button>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <span class="kicker">◆ Бір шығарманың лингвистикалық корпусы</span>
-  <h1>«Бай мен жарлы баласы»</h1>
-  <p class="sub">Ыбырай Алтынсариннің әңгімесі бойынша құрастырылған цифрлық корпус — конкорданс, жиілік сөздігі, статистика және толық мәтін.</p>
-  <p class="by">Автор: <b>Ыбырай Алтынсарин</b> (1841–1889) · «Қазақ хрестоматиясы», 1879</p>
-  <div class="stats" id="heroStats"></div>
-</div></header>
+  <div>
+    <span class="kicker"><span class="dot"></span> Бір шығарманың цифрлық корпусы</span>
+    <h1>Әр сөз —<br><em>бір ізденіс</em></h1>
+    <p class="sub">Ыбырай Алтынсариннің «Бай мен жарлы баласы» әңгімесін цифрлы түрде зерттеңіз: сөзден — мағынаға, сөйлемнен — тұтас әңгімеге.</p>
+    <div class="hcta">
+      <a class="btn" href="#search">Корпустан іздеу</a>
+      <a class="btn ghost" href="#text">Толық мәтін</a>
+    </div>
+    <p class="by">Автор: <b>Ыбырай Алтынсарин</b> (1841–1889) · «Қазақ хрестоматиясы», 1879</p>
+  </div>
+  <div class="scene" id="scene">
+    <svg viewBox="0 0 400 408" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/>
+        </linearGradient>
+        <radialGradient id="sg" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="var(--sun)" stop-opacity="1"/><stop offset="1" stop-color="var(--sun)" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="408" fill="url(#sky)"/>
+      <circle class="sun" cx="300" cy="120" r="70" fill="url(#sg)"/>
+      <circle class="sun" cx="300" cy="120" r="30" fill="var(--sun)"/>
+      <g class="cloud"><ellipse cx="90" cy="86" rx="40" ry="12" fill="var(--surface)" opacity=".5"/><ellipse cx="120" cy="80" rx="26" ry="10" fill="var(--surface)" opacity=".5"/></g>
+      <g class="cloud c2"><ellipse cx="250" cy="60" rx="32" ry="9" fill="var(--surface)" opacity=".4"/></g>
+      <path d="M0 250 Q110 205 210 240 T400 232 V408 H0 Z" fill="var(--hill3)"/>
+      <path d="M0 290 Q130 250 260 285 T400 278 V408 H0 Z" fill="var(--hill2)"/>
+      <path d="M0 340 Q150 300 300 335 T400 330 V408 H0 Z" fill="var(--hill1)"/>
+      <ellipse cx="120" cy="372" rx="120" ry="26" fill="var(--lake)" opacity=".9"/>
+      <g class="reeds"><path d="M44 360 q-3 -22 2 -34" stroke="var(--hill1)" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M52 360 q2 -20 7 -30" stroke="var(--hill1)" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+      <!-- yurt -->
+      <g transform="translate(305,300)"><path d="M0 22 L26 22 L22 6 L4 6 Z" fill="var(--surface)" stroke="var(--line)"/><path d="M4 6 L13 -2 L22 6 Z" fill="var(--accent-soft)" stroke="var(--line)"/></g>
+      <!-- two boys -->
+      <g transform="translate(150,322)"><circle cx="0" cy="-10" r="5" fill="var(--accent)"/><rect x="-4" y="-5" width="8" height="18" rx="4" fill="var(--accent)"/></g>
+      <g transform="translate(168,326)"><circle cx="0" cy="-9" r="4.5" fill="var(--green)"/><rect x="-4" y="-4" width="8" height="16" rx="4" fill="var(--green)"/></g>
+      <!-- birds -->
+      <g class="bird" fill="none" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" opacity=".75"><path d="M0 60 q7 -8 14 0"/><path d="M14 60 q7 -8 14 0"/></g>
+      <g class="bird b2" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".6"><path d="M0 100 q6 -7 12 0"/><path d="M12 100 q6 -7 12 0"/></g>
+      <g class="bird b3" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity=".5"><path d="M0 150 q5 -6 10 0"/><path d="M10 150 q5 -6 10 0"/></g>
+    </svg>
+    <svg class="ornament" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c2 3 2 5 0 7-2-2-2-4 0-7Zm0 20c-2-3-2-5 0-7 2 2 2 4 0 7ZM2 12c3-2 5-2 7 0-2 2-4 2-7 0Zm20 0c-3 2-5 2-7 0 2-2 4-2 7 0Z"/></svg>
+    <div class="qcard" id="qcard">
+      <div class="lab">Әңгімеден</div>
+      <div class="qt" id="qt">—</div>
+      <div class="qd" id="qd"></div>
+      <div class="qdots" id="qdots"></div>
+    </div>
+  </div>
+</div>
+<div class="wrap"><div class="hstats reveal" id="heroStats"></div></div>
+<div class="ticker reveal"><div class="run" id="ticker"></div></div>
+</header>
 
 <main>
-<section id="search"><div class="wrap">
+<section id="search"><div class="wrap reveal">
   <div class="eyebrow">01 — Конкорданс</div>
   <h2>Корпустан іздеу (KWIC)</h2>
   <p class="lead">Сөзді мәтін ішіндегі контексімен (keyword-in-context) табыңыз. Үш режим: дәл сөзформа, сөз басы және тіркес.</p>
   <div class="card">
-    <div class="searchbar">
-      <input id="q" type="text" placeholder="Мысалы: Үсен, бала, су…" autocomplete="off">
-      <button class="btn" id="go">Іздеу</button>
-    </div>
-    <div class="modes" id="modes">
-      <button class="on" data-m="form">Сөзформа (дәл)</button>
-      <button data-m="prefix">Сөз басы</button>
-      <button data-m="phrase">Тіркес</button>
-    </div>
+    <div class="searchbar"><input id="q" type="text" placeholder="Мысалы: Үсен, бала, су…" autocomplete="off"><button class="btn" id="go">Іздеу</button></div>
+    <div class="modes" id="modes"><button class="on" data-m="form">Сөзформа (дәл)</button><button data-m="prefix">Сөз басы</button><button data-m="phrase">Тіркес</button></div>
     <div class="chips" id="chips"></div>
     <div class="meta" id="kmeta"></div>
     <div class="kwic" id="kwic"></div>
@@ -184,26 +293,20 @@ footer b{color:var(--ink)}
   </div>
 </div></section>
 
-<section id="freq"><div class="wrap">
+<section id="freq"><div class="wrap reveal">
   <div class="eyebrow">02 — Жиілік сөздігі</div>
   <h2>Жиілік сөздігі</h2>
   <p class="lead">Әр сөзформаның абсолют жиілігі, бір миллион сөзге шаққандағы жиілігі (ipm) және корпустағы үлесі (%). Бағанды басып сұрыптаңыз, сөзді басып карточкасын ашыңыз.</p>
   <div class="card">
-    <div class="toolbar">
-      <input id="fq" type="text" placeholder="Сөзформаны сүзу…" autocomplete="off">
-      <button class="btn ghost" id="expF">⬇ Толық сөздік CSV</button>
-    </div>
-    <div class="tablewrap" style="max-height:460px">
-      <table id="ftab"><thead><tr>
-        <th data-s="rank">№</th><th data-s="word">Сөзформа</th>
-        <th data-s="count">Жиілік</th><th data-s="ipm">ipm</th><th data-s="pct">%</th><th>Үлес</th>
-      </tr></thead><tbody id="fbody"></tbody></table>
-    </div>
+    <div class="toolbar"><input id="fq" type="text" placeholder="Сөзформаны сүзу…" autocomplete="off"><button class="btn ghost" id="expF">⬇ Толық сөздік CSV</button></div>
+    <div class="tablewrap" style="max-height:470px"><table id="ftab"><thead><tr>
+      <th data-s="rank">№</th><th data-s="word">Сөзформа</th><th data-s="count">Жиілік</th><th data-s="ipm">ipm</th><th data-s="pct">%</th><th>Үлес</th>
+    </tr></thead><tbody id="fbody"></tbody></table></div>
     <div class="meta" id="fmeta"></div>
   </div>
 </div></section>
 
-<section id="stats"><div class="wrap">
+<section id="stats"><div class="wrap reveal">
   <div class="eyebrow">03 — Статистика</div>
   <h2>Мәтін статистикасы</h2>
   <p class="lead">Корпустың негізгі сандық көрсеткіштері мен ең жиі 20 сөзформаның таралуы.</p>
@@ -214,25 +317,24 @@ footer b{color:var(--ink)}
   </div>
 </div></section>
 
-<section id="text"><div class="wrap">
+<section id="text"><div class="wrap reveal">
   <div class="eyebrow">04 — Толық мәтін</div>
   <h2>Мәтін (сөйлемдермен)</h2>
-  <p class="lead">Әңгіменің толық мәтіні сөйлемдерге бөлініп, нөмірленген. Кез келген сөзді басып, оның корпустағы карточкасын ашуға болады. Жоғарыдан сөз сүзіп, мәтінде бояуға болады.</p>
+  <p class="lead">Әңгіменің толық мәтіні сөйлемдерге бөлініп нөмірленген. Кез келген сөзді басып, оның карточкасын ашыңыз. Жоғарыдан сөз сүзіп, мәтінде бояуға болады.</p>
   <div class="card">
-    <div class="toolbar"><input id="tq" type="text" placeholder="Мәтінде бояу…" autocomplete="off">
-      <span class="meta" id="tmeta"></span></div>
+    <div class="toolbar"><input id="tq" type="text" placeholder="Мәтінде бояу…" autocomplete="off"><span class="meta" id="tmeta"></span></div>
     <div class="text" id="fulltext"></div>
   </div>
 </div></section>
 
-<section id="about"><div class="wrap">
+<section id="about"><div class="wrap reveal">
   <div class="eyebrow">05 — Дереккөз бен әдіснама</div>
   <h2>Корпус туралы</h2>
-  <div class="card">
-    <p><b>Шығарма.</b> Ыбырай Алтынсарин, «Бай мен жарлы баласы» (прозалық әңгіме). Алғаш «Қазақ хрестоматиясында» (1879) жарияланған.</p>
-    <p><b>Мәтін көзі.</b> Толық мәтін Wikisource ашық кітапханасынан алынды (көпшілік игілігі). Түпнұсқа емле сақталды — редакцияланбаған.</p>
-    <p><b>Әдіснама.</b> Сөзформа (словоформа) деп кирилл әріптерінен тұратын үзіліссіз бірлік саналды. Жиілік абсолют мәнде және ipm (count ÷ жалпы сөз × 1 000 000) түрінде берілді. Барлық есеп браузерде, нақты мәтіннен нақты уақытта жүргізіледі. Кодтама — UTF-8.</p>
-    <p><b>Құралдар.</b> Конкорданс (KWIC, 3 режим), жиілік сөздігі (сұрыптау, сүзу, CSV экспорт), статистика (TTR, hapax, диаграмма), сөз картасы, толық мәтінді бояп іздеу.</p>
+  <div class="agrid">
+    <div class="acard"><div class="ic">📜</div><h3>Шығарма</h3><p>Ыбырай Алтынсарин, «Бай мен жарлы баласы» — прозалық әңгіме. Алғаш «Қазақ хрестоматиясында» (1879) жарияланған.</p></div>
+    <div class="acard"><div class="ic">🗄️</div><h3>Мәтін көзі</h3><p>Толық мәтін Wikisource ашық кітапханасынан алынды (көпшілік игілігі). Түпнұсқа емле сақталды — редакцияланбаған.</p></div>
+    <div class="acard"><div class="ic">⚙️</div><h3>Әдіснама</h3><p>Сөзформа — кирилл әріптерінен тұратын үзіліссіз бірлік. Жиілік абсолют мәнде және ipm (count ÷ жалпы сөз × 1 000 000) түрінде. Барлық есеп браузерде, нақты мәтіннен есептеледі. UTF-8.</p></div>
+    <div class="acard"><div class="ic">🧰</div><h3>Құралдар</h3><p>Конкорданс (KWIC, 3 режим), жиілік сөздігі (сұрыптау, сүзу, CSV экспорт), статистика (TTR, hapax, диаграмма), сөз картасы, толық мәтінді бояп іздеу.</p></div>
   </div>
 </div></section>
 </main>
@@ -252,167 +354,142 @@ footer b{color:var(--ink)}
 
 <script>
 const RAW = "Асан деген бай баласы, Үсен жарлы баласы,- екеуі кұрдас екен. Бір күні ел көшкенде қыр астында ойнап жүріп, ескерілмей, екеуі жұртта қалыпты. Бір мезгілде үйге баралық деп келсе, ауыл жоқ, құр жұрты жатыр. Асан айқай салып, жылай бастады. Үсен ойланып тұрды да айтты: — Жылағанмен ешнәрсе өнбес. Көшкен ауылды іздеп табалық. — Елді қайдан табамыз, қай жаққа кеткенін де көргеніміз жок, — деді Асан. Үсен үндемеді, Асанды ертіп көшкен жұртқа келді. Жұртта бір көзі сынған ине жатыр екен оны алды және бір пышақтың сынығын, бір-екі уыстай қыл тауып, оны да алды. Сонан сон ауылдың жұртын айнала жүгіріп жүріп, көштің кеткен сүрлеуін тауып, сол сүрлеуге түсіп жүре берді. Біраз жер еткен соң сүрлеу екі айрылды. Мұны көріп Асан жылай бастады: — Енді қайсысына түсеміз, — деп. Үсен қарап жүріп, біреуіне түсті: — Мынау сүрлеу, бүгін жүрген көштің сүрлеуі екен — малдың жас тезегі бар, — деді. Біраз жер жүрген соң Асан қарным ашты деп жылады. Үсен үндемей келе жатса, екеуінің алдынан бір үйрек ұшып, ұзамай қасына қонды. Асанның онымен ісі болмай жүре берді. Үсен жүгіріп барып сыйпалап жүріп, үйректің орнынан алты жұмыртқа тапты. Асан қуанып жұмыртқаны аламын деп еді, Үсен алдырмай: — Жолдан адасып көп күн жүрсек, бізге тамақ керек болар, үйректі де ұстап алайық, — деді. Асан айтты: — Қалай ұстаймыз? Үсен: — Мен әкемнің ұстағандарын көріп едім, — деп, манағы жұрттан тауып алған қылдан есіп тұзақ істеді де, оны апарып үйректің ұясына құрды. Мұнан соң Асанды шақырып алып, екеуі бір таса жерге, қалың шөптің арасына барып жатты. Көп ұзамай-ақ үйрек қайта ұшып, жан-жағында адам көрінбеген соң, ұясына келіп қонды. Бітегенеден соң Үсен түрегеліп, жүгіріп ұяға барып еді, үйрек ұша алмай далбырлады да қалды; қараса, үйрек мойнынан тұзаққа ілініп қалған екен. Үйректі Асан: — Тірі алып, ойнап баралық, — деді. Үсен айтты: — Жоқ, әкем: үйрек, қаз адал құстар, мұқтаждықта Құдайтағала бұларды адамға алып, тамақ етуге бұйырады, бірақ тірілей байлап-матап әуре ету обал деп айтушы еді, әуре етпей бауыздап алалық, — деп, манағы жұрттан тауып алған пышактың сынығымен бауыздап алды. Мұнан соң келе-келе жатып, түс ауған уақытта, екеуі бір өзен-судың бойына жетті. Су ішіп сусындарын қандырған соң. Үсен айтты: — Енді бір тамақ пісіріп желік. Асан: — От жоқ, неғылып пісіріп желік? — деді. Үсен үндемей су жағалап жүгіріп кетіп, бір шакпақ тас тауып әкелді және шапанының бір кішкентай жыртылған жерінен азғана мақта суырып алып, оны тастың үстіне қойып бәрін бармағына ғана қатты қысып тұрып, манағы пышақтың сыртымен тасқа қатты ұрып еді, от шығып, мақта тұтанды; сонан соң айналасына азғана тезек үгіп салып, Үсен өзі отты үріп тұтандырып жатып, Асанды қу тал жинап алып кел деп жіберді. Тал келтірілген соң от жағып, әуелі жұмыртқаны отқа салып пісірді; онан соң үйректің жүнін жұлып, бұтарлап, бір талдан істік істеп, үйректі отқа қақтады. Піскен соң екеуі де жесіп, тойып алысты. Тамағы тойған соң көңілінен уайымы шығып, Асан су жағалап жүгіріп кетті, бір мезгілде дауыстады: — Үсен, Үсен! Мынау тайыз жердегі балықтарды қарашы! — деп. Үсен оған қарамай баяғы жұрттан тапқан инені отқа салды. Ине біраздан соң оттың күшімен еріп қызарды, сол уақытта пышақпен инені алып, ептеп иді, қармақ істеді. Сонан соң Асанды шакырып: — Сен шегіртке тере бер, — деді де, өзі манағы қылдан есіп қармаққа бау істеп байлап, талдап кесіп оған caп істеді. Сөйтіп, қармағы әбзелімен даяр болған соң, Үсен суға барып, Асаннын жиған шегірткесін жемге шаншып, қармағын суға салды. Су әдемі, айнадай таза су екен, ішіндегі ойнаған балықтары көрініп жүретұғын. Әуелі шабақтар келді, біреуі бір, екеуі екі жемді иіскеп, тиіп-қашып, жұлқып өтіп жүрді. Сөйтіп тұрғанда шабақтар дүркірей келіп қашты. Қараса, бір шортан келген екен. Ол шортан жемге де қарамай, тәкәппарланып жайымен былғандап өтіп жүре берді. Шортан өткен соң манағы бытырап кеткен шабақтар тағы жалма-жан жыйылып келісіп, жемнің айналасында ойнап, бірін-бірі қуып, жемге де тиіп-қашып соғып өтіп жүрді. Сөйтіп тұрғанда, шабақтар және дүркірей қашып, жоқ боп кетті. Қараса, бір бөлек алабұғалар келген екен, жемді ең бұрын көрген біреуі тоқталмастан келіп асап келіп қалғанда, Үсен қармақты тартып алып оны қырға шығарып тастады. Сол қалыпша Үсен бірталай алабұға алды. Балықтың алынған қызығына айналып тұрып, балалар күннің кешке таянып қалғанын аңғармаған да екен. Бір мезгілде Үсен күнге карап: — Аһ, күн кеш боп қалыпты ғой, жарықта өткел тауып алайық, — деп, қармақпен алған балықтарын біреуінің шапанына орап алып, манағы шақпақ тасын және сабы-бауымен қармағын да қалдырмай алып, енді өткел іздесті. Бұл турада Үсен кідірместен, манағы өздерінің түсіп келген сүрлеудің өткен жерін тауып алып, сол жерден өте шыкты. Біраз жүрген соң-ақ күн кеш болды және біраздан соң ымырт жабылып, жол көрінбеді. Түн болған соң, балалар екеуі де қорқайын деді. Сөйтсе де Үсен сыр білдірмей, енді жүрсек адасармыз деп тоқтады, тезек теріп от жақты. Біраз отырған соң Асан күндіз көп жүріп шаршаған бала, ұыйқтап қалды. Үсен ойлады: әкем айтушы еді «елді жердің ұрысы, далалы жердің берісі болады» — деп, ұйықтамай отқа күндізгі алған балығын пісіріп, ермек етіп отыра берді; есітуі бар еді: от жағып отырса, қасқыр келмейді-міс деп. Қарап отырса, бір мезгілде бір топ киік келді. Олар анадайдан одырайып қарап тұрып-тұрып, өз-өзінен үркіп жөнелді. Біраздан соң құлын, тайы бар бір үйір құлан келді; айғыры алдында басын тікшитіп, кұйрығын шаншып, осқырынып, өзгелері таңданып қарап тұрды-тұрды да, олар да шауып жөнелді. Бір мезгілде жақын жерде қасқыр ұлыды; алысырақта өгіз-шағала адамша шыңғырып, біресе жылаған балаша, біресе қарқылдап күлген адамша, әртүрлі дауысқа салды. Үсен түйініңкіреп, бойы мұздап, қолына манағы қармақтың таяғын қысыңқырап ұстап және отыра берді. Сөйтіп, әр жануарларды көріп және оттың жарығына жыйылған құрт-құмырсқа, көбелектерді қарап, бұл көбелек-қоңыздар неге көріне өлім іздеп отка түсе береді екен деп, әртүрлі ойларға қалып, сүйеніп жатып, таңды атырды. Күншығыста таң әуел алтынмен бояғандай қызарып, жан-жакка жайыла-жайыла барып, ақыры қызылы тарап ағара бастағанда, Үсен Асанды да оята бастады: «Жүрер уакыт болды» - деп. Асан далада екенін ұмытып үйдегі қалыбынша, жуық арада оянбай ыңырсыса да, Үсен қоймай оятып алып, қасына ертіп жолға шығысты. Күн сәскеге шейін жүріп отырып, сәскеде сүрлеу бір қатаң шоқаттау жерге түсіп көрінбей кетті. Балалар енді қай жақка жүрерін білмей дағдарып тұрды. Сөйтіп, жан-жағына қарап тұрса, ілгергі алдында бір биік қыр үстінде, үлкен мола көрінді. Сонда Үсеннің ойына әкесінің сөзі түсті: далада жүріп адассаң, молалы жерде су болады, сулы жерде ел болады дейді екен. Сол ақыл бойынша Үсен Асанды ертіп, молаға қарай жүрді. Молаға жақындап келгенде, қаңқылдаған қаздың даусы шықты; Үсен енді білді жақын жерде көл бар екенін, оның үшін қаз сусыз жерді мекен етпейді. Келіп екеуі енді молалы қырға шықты, қараса, қырдың жығылар асты үлкен көл екен, көлдің айналасы да, іші де жыңылдаған мал; жағасындағы жібектей жапырылған көкорай шалғынында қора-қора қой мен жылқы, жылқының бір парасы көл ішіне кіріп, белінен құраққа кіріп тұр, енді бір жақжағасындағы сортаңда бір топ түйе жатыр. Бұларды көріп, балалар қырдан түсіп, жүгіріп малға келді. Келсе өз ауылдарының малы екен. Малшылар Асан, Үсенді көріп, олар да қуанып, біреуі әке-шешелерінен сүйінші сұраймыз деп шауып кетті, өзгелері балаларды атқа мінгізіп, ауылға алып жүрді. Жолда келе жатып малшылар айтты: — Сендердің жұртта қалғаныңды біліп, кешеден ауылдың жан біткені іздеуге кетіп еді, — деп. Нақ бесін мезгілінде балалар аман-есен үйлеріне келіп, әке-шешелеріне қосылды дейді.";
-const LET = "А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүІіҺһ";
-const WRE = new RegExp("["+LET+"]+","gu");
-
-// tokenize with positions
-const TOKENS=[]; let mm;
-WRE.lastIndex=0;
-while((mm=WRE.exec(RAW))!==null){
-  TOKENS.push({t:mm[0], l:mm[0].toLowerCase(), s:mm.index, e:mm.index+mm[0].length});
-}
+const RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const LET="А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүІіҺһ";
+const WRE=new RegExp("["+LET+"]+","gu");
+const TOKENS=[]; let mm; WRE.lastIndex=0;
+while((mm=WRE.exec(RAW))!==null)TOKENS.push({t:mm[0],l:mm[0].toLowerCase(),s:mm.index,e:mm.index+mm[0].length});
 const N=TOKENS.length;
-// frequency
-const FREQ=new Map();
-for(const tk of TOKENS){FREQ.set(tk.l,(FREQ.get(tk.l)||0)+1);}
-const TYPES=FREQ.size;
-let hapax=0; for(const v of FREQ.values()) if(v===1) hapax++;
+const FREQ=new Map(); for(const tk of TOKENS)FREQ.set(tk.l,(FREQ.get(tk.l)||0)+1);
+const TYPES=FREQ.size; let hapax=0; for(const v of FREQ.values())if(v===1)hapax++;
 const FLIST=[...FREQ.entries()].map(([w,c])=>({w,c,ipm:Math.round(c/N*1e6),pct:+(c/N*100).toFixed(2)}))
-  .sort((a,b)=>b.c-a.c||a.w.localeCompare(b.w,'kk'));
-FLIST.forEach((o,i)=>o.rank=i+1);
-// sentences
-const SENTS = RAW.split(/(?<=[.!?…])\s+/).filter(s=>s.trim());
-const avgSent=(N/SENTS.length);
-let longest=0; for(const s of SENTS){const k=(s.match(WRE)||[]).length; if(k>longest)longest=k;}
-
+  .sort((a,b)=>b.c-a.c||a.w.localeCompare(b.w,'kk')); FLIST.forEach((o,i)=>o.rank=i+1);
+const SENTS=RAW.split(/(?<=[.!?…])\s+/).filter(s=>s.trim());
+const avgSent=N/SENTS.length; let longest=0; for(const s of SENTS){const k=(s.match(WRE)||[]).length;if(k>longest)longest=k;}
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const fmt=n=>n.toLocaleString('kk');
 
-// hero + stats
+/* hero stats (count-up) */
 document.getElementById('heroStats').innerHTML=[
-  [fmt(N),'сөзқолданыс'],[fmt(TYPES),'сөзформа'],[fmt(SENTS.length),'сөйлем'],[(TYPES/N).toFixed(3),'TTR']
-].map(([n,l])=>`<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
+  [N,'сөзқолданыс',0],[TYPES,'сөзформа',0],[SENTS.length,'сөйлем',0],[TYPES/N,'TTR',3]
+].map(([n,l,d])=>`<div class="stat"><div class="n" data-to="${n}" data-dec="${d}">0</div><div class="l">${l}</div></div>`).join('');
 
+/* stats grid */
 document.getElementById('sgrid').innerHTML=[
-  [fmt(N),'Сөзқолданыс (tokens)'],[fmt(TYPES),'Түрлі сөзформа (types)'],
-  [(TYPES/N).toFixed(3),'TTR — лексикалық байлық'],[fmt(hapax),'Hapax (1 рет)'],
-  [(100*hapax/TYPES).toFixed(1)+'%','Hapax үлесі'],[fmt(SENTS.length),'Сөйлем саны'],
-  [avgSent.toFixed(1),'Орташа ұзындық (сөз/сөйлем)'],[fmt(longest),'Ең ұзын сөйлем (сөз)']
+  [fmt(N),'Сөзқолданыс (tokens)'],[fmt(TYPES),'Түрлі сөзформа (types)'],[(TYPES/N).toFixed(3),'TTR — лексикалық байлық'],
+  [fmt(hapax),'Hapax (1 рет)'],[(100*hapax/TYPES).toFixed(1)+'%','Hapax үлесі'],[fmt(SENTS.length),'Сөйлем саны'],
+  [avgSent.toFixed(1),'Орташа (сөз/сөйлем)'],[fmt(longest),'Ең ұзын сөйлем (сөз)']
 ].map(([n,l])=>`<div class="sbox"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
 
-// chart top 20
-const top=FLIST.slice(0,20), mx=top[0].c;
+/* chart */
+const top=FLIST.slice(0,20),mx=top[0].c;
 document.getElementById('chart').innerHTML=top.map(o=>
-  `<div class="crow"><div class="w" title="${esc(o.w)}">${esc(o.w)}</div>
-   <div class="cbar" style="width:${(o.c/mx*100).toFixed(1)}%"></div>
-   <div class="v">${o.c}</div></div>`).join('');
+  `<div class="crow"><div class="w" title="${esc(o.w)}">${esc(o.w)}</div><div class="cbar" data-w="${(o.c/mx*100).toFixed(1)}"></div><div class="v">${o.c}</div></div>`).join('');
 
-// ---- CONCORDANCE ----
-let MODE='form';
-const q=document.getElementById('q'), kwic=document.getElementById('kwic'), kmeta=document.getElementById('kmeta');
-document.getElementById('modes').onclick=e=>{const b=e.target.closest('button'); if(!b)return;
-  [...e.currentTarget.children].forEach(x=>x.classList.remove('on')); b.classList.add('on'); MODE=b.dataset.m; if(q.value.trim())search();};
-const CTX=55;
-let lastRows=[];
-function kwicLine(center_s,center_e){
-  const left=esc(RAW.slice(Math.max(0,center_s-CTX),center_s));
-  const key=esc(RAW.slice(center_s,center_e));
-  const right=esc(RAW.slice(center_e,center_e+CTX));
-  return `<div class="krow"><div class="kleft">${left}</div><div class="kkey">${key}</div><div class="kright">${right}</div></div>`;
-}
-function search(){
-  const term=q.value.trim(); if(!term){kwic.innerHTML='';kmeta.textContent='';document.getElementById('kexport').classList.add('hidden');return;}
-  const tl=term.toLowerCase(); let hits=[];
-  if(MODE==='phrase'){
-    const hay=RAW.toLowerCase(); let i=0;
-    while((i=hay.indexOf(tl,i))!==-1){hits.push([i,i+tl.length]); i+=tl.length;}
-  }else{
-    for(const tk of TOKENS){
-      if(MODE==='form'? tk.l===tl : tk.l.startsWith(tl)) hits.push([tk.s,tk.e]);
-    }
-  }
+/* ticker */
+const tks=FLIST.slice(0,26);
+const tHTML=tks.map(o=>`<span class="w" data-w="${esc(o.w)}">${esc(o.w)}<b>${o.c}</b></span>`).join('');
+document.getElementById('ticker').innerHTML=tHTML+tHTML;
+document.getElementById('ticker').addEventListener('click',e=>{const w=e.target.closest('.w');if(w)wordCard(w.dataset.w);});
+
+/* quote carousel (real lines from the story) */
+const QUOTES=[
+  ['«Жылағанмен ешнәрсе өнбес. Көшкен ауылды іздеп табалық.»','Үсен'],
+  ['«Молалы жерде су болады, сулы жерде ел болады.»','Әке сөзі'],
+  ['«Елді жердің ұрысы, далалы жердің берісі болады.»','Әке сөзі'],
+  ['«Су әдемі, айнадай таза су екен…»','Баяндаушы']
+];
+let qi=0;
+document.getElementById('qdots').innerHTML=QUOTES.map((_,i)=>`<i data-i="${i}"></i>`).join('');
+function showQ(i){qi=i;document.getElementById('qt').textContent=QUOTES[i][0];document.getElementById('qd').textContent=QUOTES[i][1];
+  document.querySelectorAll('#qdots i').forEach((d,j)=>d.classList.toggle('on',j===i));}
+document.getElementById('qdots').onclick=e=>{const d=e.target.closest('i');if(d)showQ(+d.dataset.i);};
+showQ(0);
+if(!RM)setInterval(()=>showQ((qi+1)%QUOTES.length),4200);
+
+/* ===== concordance ===== */
+let MODE='form';const q=document.getElementById('q'),kwic=document.getElementById('kwic'),kmeta=document.getElementById('kmeta');
+document.getElementById('modes').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  [...e.currentTarget.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');MODE=b.dataset.m;if(q.value.trim())search();};
+const CTX=55;let lastRows=[];
+function kwicLine(s,e){return `<div class="krow"><div class="kleft">${esc(RAW.slice(Math.max(0,s-CTX),s))}</div><div class="kkey">${esc(RAW.slice(s,e))}</div><div class="kright">${esc(RAW.slice(e,e+CTX))}</div></div>`;}
+function search(){const term=q.value.trim();if(!term){kwic.innerHTML='';kmeta.textContent='';document.getElementById('kexport').classList.add('hidden');return;}
+  const tl=term.toLowerCase();let hits=[];
+  if(MODE==='phrase'){const hay=RAW.toLowerCase();let i=0;while((i=hay.indexOf(tl,i))!==-1){hits.push([i,i+tl.length]);i+=tl.length;}}
+  else{for(const tk of TOKENS)if(MODE==='form'?tk.l===tl:tk.l.startsWith(tl))hits.push([tk.s,tk.e]);}
   lastRows=hits;
-  kmeta.innerHTML=hits.length? `<b>${hits.length}</b> қолданыс табылды${MODE!=='phrase'?` · ipm ≈ ${Math.round(hits.length/N*1e6)}`:''}`
-    : 'Табылмады. Басқа сөзді немесе режимді көріңіз.';
-  kwic.innerHTML=hits.slice(0,400).map(([s,e])=>kwicLine(s,e)).join('')+
-    (hits.length>400?`<div class="meta">…алғашқы 400 көрсетілді (барлығы ${hits.length})</div>`:'');
-  document.getElementById('kexport').classList.toggle('hidden',hits.length===0);
-}
-document.getElementById('go').onclick=search;
-q.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
+  kmeta.innerHTML=hits.length?`<b>${hits.length}</b> қолданыс${MODE!=='phrase'?` · ipm ≈ ${Math.round(hits.length/N*1e6)}`:''}`:'Табылмады. Басқа сөзді немесе режимді көріңіз.';
+  kwic.innerHTML=hits.slice(0,400).map(([s,e])=>kwicLine(s,e)).join('')+(hits.length>400?`<div class="meta">…алғашқы 400 (барлығы ${hits.length})</div>`:'');
+  document.getElementById('kexport').classList.toggle('hidden',hits.length===0);}
+document.getElementById('go').onclick=search;q.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
 q.addEventListener('input',()=>{if(q.value.trim().length>=2)search();});
-// example chips from top content words
-const stop=new Set(['мен','деп','соң','бір','де','да','та','те','боп','ед','ол','енді','және','бұл']);
+const stop=new Set(['мен','деп','соң','бір','де','да','та','те','боп','ед','ол','енді','және','бұл','сол']);
 const chips=FLIST.filter(o=>o.w.length>=3&&!stop.has(o.w)).slice(0,8).map(o=>o.w);
 document.getElementById('chips').innerHTML='Мысалдар: '+chips.map(w=>`<span class="chip" data-w="${esc(w)}">${esc(w)}</span>`).join(' ');
-document.getElementById('chips').onclick=e=>{const c=e.target.closest('.chip'); if(!c)return; q.value=c.dataset.w; MODE='form';
-  [...document.getElementById('modes').children].forEach((x,i)=>x.classList.toggle('on',i===0)); search(); document.getElementById('search').scrollIntoView({behavior:'smooth'});};
-function toCSV(rows){return rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\n');}
-function dl(name,csv){const b=new Blob(['﻿'+csv],{type:'text/csv'});const u=URL.createObjectURL(b);
-  const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
-document.getElementById('expK').onclick=()=>{
-  const rows=[['left','keyword','right']].concat(lastRows.map(([s,e])=>[RAW.slice(Math.max(0,s-CTX),s).replace(/\s+/g,' '),RAW.slice(s,e),RAW.slice(e,e+CTX).replace(/\s+/g,' ')]));
-  dl('concordance_'+q.value.trim()+'.csv',toCSV(rows));
-};
+document.getElementById('chips').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;q.value=c.dataset.w;MODE='form';
+  [...document.getElementById('modes').children].forEach((x,i)=>x.classList.toggle('on',i===0));search();};
+function toCSV(r){return r.map(x=>x.map(y=>`"${String(y).replace(/"/g,'""')}"`).join(',')).join('\n');}
+function dl(name,csv){const b=new Blob(['﻿'+csv],{type:'text/csv'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+document.getElementById('expK').onclick=()=>dl('concordance_'+q.value.trim()+'.csv',toCSV([['left','keyword','right']].concat(lastRows.map(([s,e])=>[RAW.slice(Math.max(0,s-CTX),s).replace(/\s+/g,' '),RAW.slice(s,e),RAW.slice(e,e+CTX).replace(/\s+/g,' ')]))));
 
-// ---- FREQUENCY TABLE ----
-let fSort={k:'count',dir:-1}, fFilter='';
-const fbody=document.getElementById('fbody'), fmeta=document.getElementById('fmeta');
-function renderF(){
-  let rows=FLIST;
-  if(fFilter) rows=rows.filter(o=>o.w.includes(fFilter));
-  const key=fSort.k, dir=fSort.dir;
-  rows=[...rows].sort((a,b)=> (key==='word'? a.w.localeCompare(b.w,'kk'): a[key]-b[key])*dir);
+/* ===== frequency ===== */
+let fSort={k:'count',dir:-1},fFilter='';const fbody=document.getElementById('fbody'),fmeta=document.getElementById('fmeta');
+function renderF(){let rows=FLIST;if(fFilter)rows=rows.filter(o=>o.w.includes(fFilter));
+  const key=fSort.k,dir=fSort.dir;rows=[...rows].sort((a,b)=>(key==='word'?a.w.localeCompare(b.w,'kk'):a[key]-b[key])*dir);
   const mx=FLIST[0].c;
-  fbody.innerHTML=rows.slice(0,600).map(o=>`<tr>
-    <td class="num">${o.rank}</td>
-    <td class="word" data-w="${esc(o.w)}">${esc(o.w)}</td>
-    <td class="num">${o.c}</td><td class="num">${o.ipm}</td><td class="num">${o.pct}</td>
-    <td><div class="bar" style="width:${Math.max(3,o.c/mx*100)}%"></div></td></tr>`).join('');
-  fmeta.innerHTML=`${fmt(rows.length)} сөзформа${rows.length>600?' (алғашқы 600 көрсетілді)':''} · барлығы ${fmt(TYPES)} тип`;
-}
-document.querySelectorAll('#ftab th[data-s]').forEach(th=>th.onclick=()=>{
-  const k=th.dataset.s; fSort.dir = (fSort.k===k)? -fSort.dir : (k==='word'?1:-1); fSort.k=k; renderF();});
+  fbody.innerHTML=rows.slice(0,600).map(o=>`<tr><td class="num">${o.rank}</td><td class="word" data-w="${esc(o.w)}">${esc(o.w)}</td><td class="num">${o.c}</td><td class="num">${o.ipm}</td><td class="num">${o.pct}</td><td><div class="bar" data-w="${Math.max(3,o.c/mx*100)}"></div></td></tr>`).join('');
+  requestAnimationFrame(()=>fbody.querySelectorAll('.bar').forEach(b=>b.style.width=b.dataset.w+'%'));
+  fmeta.innerHTML=`${fmt(rows.length)} сөзформа${rows.length>600?' (алғашқы 600)':''} · барлығы ${fmt(TYPES)} тип`;}
+document.querySelectorAll('#ftab th[data-s]').forEach(th=>th.onclick=()=>{const k=th.dataset.s;fSort.dir=(fSort.k===k)?-fSort.dir:(k==='word'?1:-1);fSort.k=k;renderF();});
 document.getElementById('fq').addEventListener('input',e=>{fFilter=e.target.value.trim().toLowerCase();renderF();});
-document.getElementById('expF').onclick=()=>{
-  const rows=[['rank','word','count','ipm','percent']].concat(FLIST.map(o=>[o.rank,o.w,o.c,o.ipm,o.pct]));
-  dl('frequency_bai_men_jarly.csv',toCSV(rows));
-};
+document.getElementById('expF').onclick=()=>dl('frequency_bai_men_jarly.csv',toCSV([['rank','word','count','ipm','percent']].concat(FLIST.map(o=>[o.rank,o.w,o.c,o.ipm,o.pct]))));
 renderF();
 
-// ---- WORD CARD ----
+/* ===== word card ===== */
 const modal=document.getElementById('modal');
-function wordCard(w){
-  const o=FLIST.find(x=>x.w===w); if(!o)return;
+function wordCard(w){const o=FLIST.find(x=>x.w===w);if(!o)return;
   document.getElementById('mWord').textContent=w;
-  document.getElementById('mStats').innerHTML=[
-    [o.c,'жиілік'],[o.ipm,'ipm'],[o.pct+'%','үлес'],['№'+o.rank,'рейтинг']
-  ].map(([n,l])=>`<div class="b"><b>${n}</b><span>${l}</span></div>`).join('');
-  const rows=TOKENS.filter(t=>t.l===w).slice(0,60);
-  document.getElementById('mKwic').innerHTML=rows.map(t=>kwicLine(t.s,t.e)).join('');
-  modal.classList.add('on');
-}
+  document.getElementById('mStats').innerHTML=[[o.c,'жиілік'],[o.ipm,'ipm'],[o.pct+'%','үлес'],['№'+o.rank,'рейтинг']].map(([n,l])=>`<div class="b"><b>${n}</b><span>${l}</span></div>`).join('');
+  document.getElementById('mKwic').innerHTML=TOKENS.filter(t=>t.l===w).slice(0,60).map(t=>kwicLine(t.s,t.e)).join('');
+  modal.classList.add('on');}
 document.getElementById('mClose').onclick=()=>modal.classList.remove('on');
 modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on');};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('on');});
-document.getElementById('fbody').addEventListener('click',e=>{const c=e.target.closest('.word'); if(c)wordCard(c.dataset.w);});
+fbody.addEventListener('click',e=>{const c=e.target.closest('.word');if(c)wordCard(c.dataset.w);});
 
-// ---- FULL TEXT ----
+/* ===== full text ===== */
 const ft=document.getElementById('fulltext');
-function buildText(){
-  ft.innerHTML=SENTS.map((s,i)=>{
-    const html=s.replace(WRE,m=>`<span class="tok" data-w="${m.toLowerCase()}">${m}</span>`);
-    return `<span class="sent"><span class="sn">${i+1}</span>${html}</span>`;
-  }).join('');
-}
-buildText();
-ft.addEventListener('click',e=>{const c=e.target.closest('.tok'); if(c)wordCard(c.dataset.w);});
+ft.innerHTML=SENTS.map((s,i)=>`<span class="sent"><span class="sn">${i+1}</span>${s.replace(WRE,m=>`<span class="tok" data-w="${m.toLowerCase()}">${m}</span>`)}</span>`).join('');
+ft.addEventListener('click',e=>{const c=e.target.closest('.tok');if(c)wordCard(c.dataset.w);});
 const tq=document.getElementById('tq');
-tq.addEventListener('input',()=>{
-  const v=tq.value.trim().toLowerCase();
-  document.querySelectorAll('#fulltext .tok').forEach(el=>{
-    const on=v&&el.dataset.w.includes(v);
-    el.innerHTML=on?`<mark>${el.textContent}</mark>`:el.textContent;
-  });
-  document.getElementById('tmeta').textContent = v? document.querySelectorAll('#fulltext mark').length+' сәйкестік' : '';
-});
+tq.addEventListener('input',()=>{const v=tq.value.trim().toLowerCase();
+  ft.querySelectorAll('.tok').forEach(el=>{el.innerHTML=(v&&el.dataset.w.includes(v))?`<mark>${el.textContent}</mark>`:el.textContent;});
+  document.getElementById('tmeta').textContent=v?ft.querySelectorAll('mark').length+' сәйкестік':'';});
 
-// ---- THEME ----
+/* ===== theme ===== */
 const tbtn=document.getElementById('theme');
 function setT(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem('bai_theme',t)}catch(e){}}
-try{const s=localStorage.getItem('bai_theme'); if(s)document.documentElement.setAttribute('data-theme',s);}catch(e){}
-tbtn.onclick=()=>{const cur=document.documentElement.getAttribute('data-theme');
-  const dark=cur? cur==='dark' : matchMedia('(prefers-color-scheme:dark)').matches; setT(dark?'light':'dark');};
+try{const s=localStorage.getItem('bai_theme');if(s)document.documentElement.setAttribute('data-theme',s);}catch(e){}
+tbtn.onclick=()=>{const cur=document.documentElement.getAttribute('data-theme');const dark=cur?cur==='dark':matchMedia('(prefers-color-scheme:dark)').matches;setT(dark?'light':'dark');};
+
+/* ===== animations: reveal + count-up + bars ===== */
+function countUp(el){const to=+el.dataset.to,dec=+el.dataset.dec||0,dur=1100,t0=performance.now();
+  function step(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3),v=to*e;
+    el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('kk');if(p<1)requestAnimationFrame(step);}
+  requestAnimationFrame(step);}
+if(RM){document.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'));
+  document.querySelectorAll('[data-to]').forEach(el=>{const d=+el.dataset.dec||0;el.textContent=d?(+el.dataset.to).toFixed(d):(+el.dataset.to).toLocaleString('kk');});
+  document.querySelectorAll('.cbar').forEach(b=>b.style.width=b.dataset.w+'%');
+}else{
+  const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;el.classList.add('in');
+    el.querySelectorAll&&el.querySelectorAll('[data-to]').forEach(countUp);
+    if(el.id==='stats'||el.querySelector&&el.querySelector('.cbar'))el.querySelectorAll('.cbar').forEach(b=>b.style.width=b.dataset.w+'%');
+    io.unobserve(el);});},{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+  // hero stats observe directly
+  io.observe(document.getElementById('heroStats'));
+  io.observe(document.getElementById('stats'));
+}
 </script>
 </body>
 </html>
