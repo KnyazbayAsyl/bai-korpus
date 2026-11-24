@@ -481,14 +481,13 @@ if(RM){document.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'));
   document.querySelectorAll('[data-to]').forEach(el=>{const d=+el.dataset.dec||0;el.textContent=d?(+el.dataset.to).toFixed(d):(+el.dataset.to).toLocaleString('kk');});
   document.querySelectorAll('.cbar').forEach(b=>b.style.width=b.dataset.w+'%');
 }else{
-  const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;el.classList.add('in');
-    el.querySelectorAll&&el.querySelectorAll('[data-to]').forEach(countUp);
-    if(el.id==='stats'||el.querySelector&&el.querySelector('.cbar'))el.querySelectorAll('.cbar').forEach(b=>b.style.width=b.dataset.w+'%');
-    io.unobserve(el);});},{threshold:.18});
+  function revealEl(el){el.classList.add('in');
+    if(el.querySelectorAll){el.querySelectorAll('[data-to]').forEach(countUp);el.querySelectorAll('.cbar').forEach(b=>b.style.width=b.dataset.w+'%');}}
+  const io=new IntersectionObserver((es)=>{es.forEach(en=>{if(!en.isIntersecting)return;revealEl(en.target);io.unobserve(en.target);});},
+    {threshold:0, rootMargin:'0px 0px -4% 0px'});
   document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
-  // hero stats observe directly
-  io.observe(document.getElementById('heroStats'));
-  io.observe(document.getElementById('stats'));
+  // failsafe: whatever is still hidden after 2.5s is shown regardless
+  setTimeout(()=>document.querySelectorAll('.reveal:not(.in)').forEach(revealEl),2500);
 }
 </script>
 </body>
