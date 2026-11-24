@@ -385,8 +385,8 @@ document.getElementById('sgrid').innerHTML=[
 ].map(([n,l])=>`<div class="sbox"><div class="n">${n}</div><div class="l">${l}</div></div>`).join('');
 
 /* chart */
-const top=FLIST.slice(0,20),mx=top[0].c;
-document.getElementById('chart').innerHTML=top.map(o=>
+const topW=FLIST.slice(0,20),mx=topW[0].c;
+document.getElementById('chart').innerHTML=topW.map(o=>
   `<div class="crow"><div class="w" title="${esc(o.w)}">${esc(o.w)}</div><div class="cbar" data-w="${(o.c/mx*100).toFixed(1)}"></div><div class="v">${o.c}</div></div>`).join('');
 
 /* ticker */
